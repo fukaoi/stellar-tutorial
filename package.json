@@ -1,0 +1,25 @@
+{
+  "name": "stellar-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fukaoi/stellar-tutorial.git"
+  },
+  "keywords": [
+    "stellar"
+  ],
+  "author": "fukaoi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fukaoi/stellar-tutorial/issues"
+  },
+  "homepage": "https://github.com/fukaoi/stellar-tutorial#readme",
+  "dependencies": {
+    "stellar-sdk": "^0.10.3"
+  }
+}
