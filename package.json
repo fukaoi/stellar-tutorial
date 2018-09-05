@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node run.js --presets babel-preset-env -x js,json",
-    "build": "babel run -d dist --presets babel-preset-env --copy-files",
-    "serve": "node dist/run.js"
+    "start": "babel-node app/app.js --presets babel-preset-env -x js,json",
+    "build": "babel app -d dist --presets babel-preset-env --copy-files",
+    "serve": "node dist/app.js"
   },
   "repository": {
     "type": "git",
