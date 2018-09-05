@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node run.js --presets babel-preset-env -x js,json",
+    "build": "babel run -d dist --presets babel-preset-env --copy-files",
+    "serve": "node dist/run.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,9 @@
   "homepage": "https://github.com/fukaoi/stellar-tutorial#readme",
   "dependencies": {
     "stellar-sdk": "^0.10.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }
