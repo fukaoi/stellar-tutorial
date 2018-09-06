@@ -12,7 +12,8 @@ const jpyx = new StellarSdk.Asset('JPYX', issuingKeys.publicKey());
 server.loadAccount(receivingKeys.publicKey()).then((receiver) => {
   const transaction = new StellarSdk.TransactionBuilder(receiver)
     .addOperation(StellarSdk.Operation.changeTrust({
-      asset: jpyx
+      asset: jpyx,
+      limit: "10000"
     }))
     .build();
   transaction.sign(receivingKeys);
