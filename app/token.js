@@ -34,6 +34,6 @@ server.loadAccount(receivingKeys.publicKey()).then((receiver) => {
   })
   .catch((error) => {
     console.error('Stellar Error!!!')
-    console.log(error.response.data, error.response.data.extras.result_codes);
+    console.log(error.response.data.extras);
   });
 
