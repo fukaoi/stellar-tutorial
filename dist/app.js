@@ -14,7 +14,7 @@ var receivingKeys = _stellarSdk2.default.Keypair.fromSecret('SDSAVCRE5JRAI7UFAVL
 var jpyx = new _stellarSdk2.default.Asset('JPYX', issuingKeys.publicKey());
 
 server.loadAccount(receivingKeys.publicKey()).then(function (receiver) {
-  var transaction = new _stellarSdk2.default.TradesCallBuilder(receiver).addOperation(_stellarSdk2.default.Operation.changeTrust({
+  var transaction = new _stellarSdk2.default.TransactionBuilder(receiver).addOperation(_stellarSdk2.default.Operation.changeTrust({
     asset: jpyx,
     limit: '1000'
   })).build();
@@ -23,7 +23,7 @@ server.loadAccount(receivingKeys.publicKey()).then(function (receiver) {
 }).then(function () {
   return server.loadAccount(issuingKeys.publicKey());
 }).then(function (issuer) {
-  var transaction = new _stellarSdk2.default.TradesCallBuilder(issuer).addOperation(_stellarSdk2.default.Operation.payment({
+  var transaction = new _stellarSdk2.default.TransactionBuilder(issuer).addOperation(_stellarSdk2.default.Operation.payment({
     destination: receivingKeys.publicKey(),
     asset: jpyx,
     amount: 10

@@ -8,7 +8,7 @@ const receivingKeys = StellarSdk.Keypair.fromSecret('SDSAVCRE5JRAI7UFAVLE5IMIZRD
 const jpyx = new StellarSdk.Asset('JPYX', issuingKeys.publicKey());
 
 server.loadAccount(receivingKeys.publicKey()).then((receiver) => {
-  const transaction = new StellarSdk.TradesCallBuilder(receiver)
+  const transaction = new StellarSdk.TransactionBuilder(receiver)
     .addOperation(StellarSdk.Operation.changeTrust({
       asset: jpyx,
       limit: '1000'
@@ -21,11 +21,11 @@ server.loadAccount(receivingKeys.publicKey()).then((receiver) => {
     return server.loadAccount(issuingKeys.publicKey())
   })
   .then((issuer) => {
-    const transaction = new StellarSdk.TradesCallBuilder(issuer)
+    const transaction = new StellarSdk.TransactionBuilder(issuer)
       .addOperation(StellarSdk.Operation.payment({
         destination: receivingKeys.publicKey(),
         asset: jpyx,
-        amount: 10
+        amount: '10'
       }))
       .build();
     transaction.sign(issuingKeys);

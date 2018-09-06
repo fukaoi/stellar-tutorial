@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node app/app.js --presets babel-preset-env -x js,json",
+    "start": "babel-node app/app.js --presets babel-preset-env",
     "build": "babel app -d dist --presets babel-preset-env --copy-files",
     "serve": "node dist/app.js"
   },
