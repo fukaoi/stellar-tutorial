@@ -16,6 +16,9 @@ server.loadAccount(receivingKeys.publicKey()).then((receiver) => {
       limit: "10000"
     }))
     .build();
+  receiver.balances.some((balance) => {
+    console.log(balance);
+  })
   transaction.sign(receivingKeys);
   return server.submitTransaction(transaction);
 })
@@ -30,6 +33,9 @@ server.loadAccount(receivingKeys.publicKey()).then((receiver) => {
         amount: "10"
       }))
       .build();
+    issuer.balances.some((balance) => {
+      console.log(balance);
+    })
     transaction.sign(issuingKeys);
     return server.submitTransaction(transaction);
   })
