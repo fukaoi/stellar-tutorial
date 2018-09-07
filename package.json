@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node app/token.js --presets babel-preset-env",
+    "start": "babel-node --presets babel-preset-env",
     "build": "babel app -d dist --presets babel-preset-env --copy-files",
     "serve": "node dist/token.js"
   },
