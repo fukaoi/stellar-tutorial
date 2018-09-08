@@ -8,7 +8,7 @@ const sourceKeys = StellarSdk.Keypair
 const destinationId = 'GA2C5RFPE6GCKMY3US5PAB6UZLKIGSPIUKSLRB6Q723BM2OARMDUYEJ5';
 let transaction;
 const jpyx = new StellarSdk.Asset('JPYX', sourceKeys.publicKey());
-
+console.log(jpyx, StellarSdk.Asset.native())
 server.loadAccount(destinationId).catch(StellarSdk.NotFoundError, (error) => {
   throw new Error('The destination account does not exist!');
 })
@@ -18,11 +18,11 @@ server.loadAccount(destinationId).catch(StellarSdk.NotFoundError, (error) => {
     transaction = new StellarSdk.TransactionBuilder(sourceAccount)
       .addOperation(StellarSdk.Operation.payment({
         destination: destinationId,
-        // asset: jpyx,
-        asset: StellarSdk.Asset.native(),
+        asset: jpyx,
+        // asset: StellarSdk.Asset.native(),
         amount: '0.001'
       }))
-      .addMemo(StellarSdk.Memo.text('Test Transaction')).build();
+      .addMemo(StellarSdk.Memo.text('Test USD2 Transaction')).build();
     
     transaction.sign(sourceKeys);
     return server.submitTransaction(transaction);
@@ -31,5 +31,5 @@ server.loadAccount(destinationId).catch(StellarSdk.NotFoundError, (error) => {
     console.log('Success result', result);
   })
   .catch((error) => {
-    console.error('Error!', error);
+    console.error('Error!', error.response.data.extras);
   })
