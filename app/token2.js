@@ -3,10 +3,17 @@ StellarSdk.Network.useTestNetwork();
 var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 // Keys for accounts to issue and receive the new asset
+
+// GA6SZLRZTUPZTOKHKCGY6VFIFVEGPJB2PY6DFSAUAX4T2SNTFVJC4KF4
 var issuingKeys = StellarSdk.Keypair
   .fromSecret('SAEHS4V4TCKTJBPCUWJYDFWGECEBH3RKRZ7JHFALGOJGUY34XM6QNK7X');
+
+  // GD53XJI3C7W4TZBXH3TFKD7YJQXZLX2BYNOM47COPV47AZAZIDTLQJMO
 var receivingKeys = StellarSdk.Keypair
   .fromSecret('SBQEBVNICAHX6UPBH3IP4F4PYOUH5F22TLPEOTOGXLUXGKELF47LQDNA');
+
+console.log(issuingKeys.publicKey());
+console.log(receivingKeys.publicKey());
 
 // Create an object to represent the new asset
 var astroDollar2 = new StellarSdk.Asset('AstroDollar2', issuingKeys.publicKey());
