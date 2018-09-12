@@ -3,8 +3,8 @@ import StellarSdk from 'stellar-sdk';
 
 StellarSdk.Network.useTestNetwork();
 const server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-const issuingKeys = StellarSdk.Keypair.fromSecret('SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4');
-const receivingKeys = StellarSdk.Keypair.fromSecret('SDSAVCRE5JRAI7UFAVLE5IMIZRD6N6WOJUWKY4GFN34LOBEEUS4W2T2D');
+const issuingKeys = StellarSdk.Keypair.fromSecret('SAEHS4V4TCKTJBPCUWJYDFWGECEBH3RKRZ7JHFALGOJGUY34XM6QNK7X');
+const receivingKeys = StellarSdk.Keypair.fromSecret('SBQEBVNICAHX6UPBH3IP4F4PYOUH5F22TLPEOTOGXLUXGKELF47LQDNA');
 
 console.log(issuingKeys.publicKey(),receivingKeys.publicKey());
 
