@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/fukaoi/stellar-tutorial#readme",
   "dependencies": {
+    "bs58": "^4.0.1",
     "ipfs-api": "^24.0.1",
     "stellar-sdk": "^0.10.3"
   },
