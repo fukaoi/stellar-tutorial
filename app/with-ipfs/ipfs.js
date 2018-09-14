@@ -1,6 +1,6 @@
-import ipfsAPI from 'ipfs-api'
-import StellarSdk from 'stellar-sdk'
-import bs58 from 'bs58'
+import ipfsAPI from 'ipfs-api';
+import StellarSdk from 'stellar-sdk';
+import bs58 from 'bs58';
 
 // ### Public Key
 // GCEFFCCJU3YWN4V5DMB453BMQ4USROPBMV63LQKZQLTD5F67TDUBAEVB
