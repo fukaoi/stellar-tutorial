@@ -9,18 +9,6 @@ const publicKey   = 'Your public key'
 const secretKey   = 'Secret key for above public key'
 const destination = 'Send to address'
 
-//
-// Main
-//
-server
-  .loadAccount(publicKey)
-  .then(account => {
-    const transaction = createTransaction(account, destination, 0.0001)
-    transaction.sign(StellarSdk.Keypair.fromSecret(secretKey)) 
-    return server.submitTransaction(transaction)
-  })
-  .then(res => console.log(res))
-  .catch(err => console.error(err))
 
 //
 // Create transaction function 
@@ -37,3 +25,20 @@ const createTransaction = (account, destination, amount) => {
   .build()
   return tx
 }
+
+//
+// Main function
+//
+const main = async () => {
+  try {
+    const account = await server.loadAccount(publicKey);
+    const transaction = createTransaction(account, 20);
+    transaction.sign(StellarSdk.Keypair.fromSecret(secretKey)); 
+    const response = await server.submitTransaction(transaction);      
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  } 
+}
+
+main()
