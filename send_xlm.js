@@ -1,44 +1,47 @@
 const StellarSdk = require('stellar-sdk')
 
-//
-// Initialize
-//
-StellarSdk.Network.useTestNetwork()
-const server      = new StellarSdk.Server('https://horizon-testnet.stellar.org')
-const publicKey   = 'Your public key'
-const secretKey   = 'Secret key for above public key'
-const destination = 'Send to address'
-
-
-//
-// Create transaction function 
-//
-const createTransaction = (account, destination, amount) => {
-  const config = {
-    destination: destination,
-    asset: StellarSdk.Asset.native(),
-    amount: String(amount)
+class SendXlm {
+  //
+  // Initialize
+  //
+  constructor() {
+    StellarSdk.Network.useTestNetwork()
+    this.server      = new StellarSdk.Server('https://horizon-testnet.stellar.org')
+    this.publicKey   = 'Your public key'
+    this.secretKey   = 'Secret key for above public key'
+    this.destination = 'Send to address'    
   }
 
-  const tx = new StellarSdk.TransactionBuilder(account)
-  .addOperation(StellarSdk.Operation.payment(config))
-  .build()
-  return tx
+  //
+  // Create transaction function 
+  //
+  createTransaction(account, destination, amount) {
+    const config = {
+      destination: destination,
+      asset: StellarSdk.Asset.native(),
+      amount: String(amount)
+    }
+
+    const tx = new StellarSdk.TransactionBuilder(account)
+    .addOperation(StellarSdk.Operation.payment(config))
+    .build()
+    return tx
+  }
+
+  //
+  // Main function
+  //
+  async main(amount) {
+    try {
+      const account = await this.server.loadAccount(this.publicKey);
+      const transaction = this.createTransaction(account, this.destination, amount);
+      transaction.sign(StellarSdk.Keypair.fromSecret(this.secretKey)); 
+      const response = await this.server.submitTransaction(transaction);      
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    } 
+  }
 }
 
-//
-// Main function
-//
-const main = async (amount) => {
-  try {
-    const account = await server.loadAccount(publicKey);
-    const transaction = createTransaction(account, destination, amount);
-    transaction.sign(StellarSdk.Keypair.fromSecret(secretKey)); 
-    const response = await server.submitTransaction(transaction);      
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  } 
-}
-
-main(1)  // send 1XLM
+new SendXlm().main(1);
