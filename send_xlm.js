@@ -7,7 +7,7 @@ StellarSdk.Network.useTestNetwork();
 const server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 const publicKey = 'Your public key';
 const secretKey = 'Secret key for above public key';
-
+const destination = 'Send to address'
 
 //
 // Main
@@ -27,7 +27,7 @@ server
 //
 const createTransaction = account => {
   const paymentConfig = {
-    destination: "GASOCNHNNLYFNMDJYQ3XFMI7BYHIOCFW3GJEOWRPEGK2TDPGTG2E5EDW",
+    destination: destination,
     asset: StellarSdk.Asset.native(),
     amount: "10"
   }
