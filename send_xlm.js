@@ -3,10 +3,10 @@ const StellarSdk = require('stellar-sdk')
 //
 // Initialize
 //
-StellarSdk.Network.useTestNetwork();
-const server      = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-const publicKey   = 'Your public key';
-const secretKey   = 'Secret key for above public key';
+StellarSdk.Network.useTestNetwork()
+const server      = new StellarSdk.Server('https://horizon-testnet.stellar.org')
+const publicKey   = 'Your public key'
+const secretKey   = 'Secret key for above public key'
 const destination = 'Send to address'
 
 //
@@ -15,12 +15,12 @@ const destination = 'Send to address'
 server
   .loadAccount(publicKey)
   .then(account => {
-    const transaction = createTransaction(account);
-    transaction.sign(StellarSdk.Keypair.fromSecret(secretKey)); 
-    return server.submitTransaction(transaction);
+    const transaction = createTransaction(account)
+    transaction.sign(StellarSdk.Keypair.fromSecret(secretKey)) 
+    return server.submitTransaction(transaction)
   })
   .then(res => console.log(res))
-  .catch(err => console.error(err));
+  .catch(err => console.error(err))
 
 //
 // Create transaction function 
@@ -34,6 +34,6 @@ const createTransaction = account => {
 
   const tx = new StellarSdk.TransactionBuilder(account)
   .addOperation(StellarSdk.Operation.payment(paymentConfig))
-  .build();
-  return tx;
+  .build()
+  return tx
 }  
