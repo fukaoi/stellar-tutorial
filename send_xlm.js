@@ -4,9 +4,9 @@ const StellarSdk = require('stellar-sdk')
 // Initialize
 //
 StellarSdk.Network.useTestNetwork();
-const server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-const publicKey = 'Your public key';
-const secretKey = 'Secret key for above public key';
+const server      = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+const publicKey   = 'Your public key';
+const secretKey   = 'Secret key for above public key';
 const destination = 'Send to address'
 
 //
