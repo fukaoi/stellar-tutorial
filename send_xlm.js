@@ -15,7 +15,7 @@ const destination = 'Send to address'
 server
   .loadAccount(publicKey)
   .then(account => {
-    const transaction = createTransaction(account, 0.0001)
+    const transaction = createTransaction(account, destination, 0.0001)
     transaction.sign(StellarSdk.Keypair.fromSecret(secretKey)) 
     return server.submitTransaction(transaction)
   })
@@ -25,7 +25,7 @@ server
 //
 // Create transaction function 
 //
-const createTransaction = (account, amount) => {
+const createTransaction = (account, destination, amount) => {
   const paymentConfig = {
     destination: destination,
     asset: StellarSdk.Asset.native(),
