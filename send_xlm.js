@@ -29,10 +29,10 @@ const createTransaction = (account, destination, amount) => {
 //
 // Main function
 //
-const main = async () => {
+const main = async (amount) => {
   try {
     const account = await server.loadAccount(publicKey);
-    const transaction = createTransaction(account, 20);
+    const transaction = createTransaction(account, destination, amount);
     transaction.sign(StellarSdk.Keypair.fromSecret(secretKey)); 
     const response = await server.submitTransaction(transaction);      
     console.log(response);
@@ -41,4 +41,4 @@ const main = async () => {
   } 
 }
 
-main()
+main(1)  // send 1XLM
