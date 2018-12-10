@@ -26,14 +26,14 @@ server
 // Create transaction function 
 //
 const createTransaction = (account, destination, amount) => {
-  const paymentConfig = {
+  const config = {
     destination: destination,
     asset: StellarSdk.Asset.native(),
     amount: String(amount)
   }
 
   const tx = new StellarSdk.TransactionBuilder(account)
-  .addOperation(StellarSdk.Operation.payment(paymentConfig))
+  .addOperation(StellarSdk.Operation.payment(config))
   .build()
   return tx
 }
