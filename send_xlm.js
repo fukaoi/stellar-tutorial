@@ -7,9 +7,9 @@ class SendXlm {
   constructor() {
     StellarSdk.Network.useTestNetwork()
     this.server      = new StellarSdk.Server('https://horizon-testnet.stellar.org')
-    this.publicKey   = 'Your public key'
-    this.secretKey   = 'Secret key for above public key'
-    this.destination = 'Send to address'    
+    this.publicKey   = 'GB6LCMBSMRXB7VQ3T5DVW6UHRVXEQBCJPLJZ6PQCP3BSCFOVUWNLLTDS'
+    this.secretKey   = 'SB2DJZP57QNVW57DZTTQTLW333KNX477UR5DLRUBIDVC2V46OCW4UKEB'
+    this.destination = 'GBY4J7D4ERYAVD2IXTIFS6SSSSG343LNF5B57F4BJL5IIEKGUBEBYC37'    
   }
 
   //
@@ -29,7 +29,7 @@ class SendXlm {
   }
 
   //
-  // Main function
+  // Main method
   //
   async main(amount) {
     try {
