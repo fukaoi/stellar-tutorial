@@ -1,3 +1,4 @@
 node_modules/
 dist/
 __*.js
+config.js
