@@ -29,6 +29,24 @@ class SendXlm {
     return tx
   }
 
+  // 
+  // check balance, asset code, asset issure
+  //
+  async checks() {
+    try {
+      const account = await this.server.loadAccount(this.publicKey);
+      const res = account.balances.map(bl => {
+        return {
+          asset_type: bl.asset_type,
+          balance: bl.balance
+        }
+      })
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }    
+  }
+
   //
   // Main method
   //
@@ -45,4 +63,6 @@ class SendXlm {
   }
 }
 
-new SendXlm().main(1);
+const xlm = new SendXlm()
+xlm.checks()  
+xlm.main(1)
