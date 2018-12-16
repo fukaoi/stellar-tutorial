@@ -5,12 +5,13 @@ class SendXlmToken {
   //
   // Initialize
   //
-  constructor() {
+  constructor(assetObject = StellarSdk.Asset.native()) {
     StellarSdk.Network.useTestNetwork()
     this.server      = new StellarSdk.Server('https://horizon-testnet.stellar.org')
     this.publicKey   = config.publicKey
     this.secretKey   = config.secretKey
     this.destination = 'GBY4J7D4ERYAVD2IXTIFS6SSSSG343LNF5B57F4BJL5IIEKGUBEBYC37'    
+    this.assetObject = assetObject
   }
 
   //
@@ -19,12 +20,15 @@ class SendXlmToken {
   createTransaction(account, destination, amount) {
     const config = {
       destination: destination,
-      asset: StellarSdk.Asset.native(),
+      asset: this.assetObject,
       amount: String(amount)
     }
-
+    
+    const operation = () => { 
+      return StellarSdk.Operation.payment(config)
+    }
     const tx = new StellarSdk.TransactionBuilder(account)
-    .addOperation(StellarSdk.Operation.payment(config))
+    .addOperation(operation())
     .build()
     return tx
   }
@@ -56,9 +60,9 @@ class SendXlmToken {
       const transaction = this.createTransaction(account, this.destination, amount);
       transaction.sign(StellarSdk.Keypair.fromSecret(this.secretKey)); 
       const response = await this.server.submitTransaction(transaction);      
-      console.log(response);
+      console.log('Send success!!');
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data);
     } 
   }
 }
