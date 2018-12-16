@@ -1,7 +1,7 @@
 const StellarSdk = require('stellar-sdk')
 const config = require('./config.js').xlm
 
-class SendXlm {
+class SendToken {
   //
   // Initialize
   //
@@ -63,6 +63,6 @@ class SendXlm {
   }
 }
 
-const xlm = new SendXlm()
+const xlm = new SendToken()
 xlm.checks()  
 xlm.main(1)
