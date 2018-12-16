@@ -2,7 +2,7 @@
   "name": "stellar-tutorial",
   "version": "1.0.0",
   "description": "",
-  "main": "send_xlm.js",
+  "main": "send_xlm_token.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

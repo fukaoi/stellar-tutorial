@@ -51,6 +51,10 @@ class SendXlmToken {
     }    
   }
 
+  decode(xdrData) {
+    return JSON.stringify(StellarSdk.xdr.TransactionResult.fromXDR(xdrData, 'base64'))
+  }
+
   //
   // Main method
   //
@@ -58,15 +62,20 @@ class SendXlmToken {
     try {
       const account = await this.server.loadAccount(this.publicKey);
       const transaction = this.createTransaction(account, this.destination, amount);
-      transaction.sign(StellarSdk.Keypair.fromSecret(this.secretKey)); 
-      const response = await this.server.submitTransaction(transaction);      
+      transaction.sign(StellarSdk.Keypair.fromSecret(this.secretKey));
+      const response = await this.server.submitTransaction(transaction);
       console.log('Send success!!');
     } catch (error) {
-      console.error(error.response.data);
+      console.error(this.decode(error.response.data.extras.result_xdr))
     } 
   }
 }
 
-const obj = new SendXlmToken()
+const token = new StellarSdk.Asset(
+  'TT3',
+  config.publicKey  
+);
+
+const obj = new SendXlmToken(token)
 obj.checks()  
 obj.main(1)
