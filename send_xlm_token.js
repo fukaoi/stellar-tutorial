@@ -1,6 +1,5 @@
 const StellarSdk = require('stellar-sdk')
 const config = require('./config.js').xlm
-
 class SendXlmToken {
   //
   // Initialize
@@ -51,9 +50,13 @@ class SendXlmToken {
     }    
   }
 
+  // 
+  // Decode from xdr binary object
+  //
   decode(xdrData) {
     return JSON.stringify(StellarSdk.xdr.TransactionResult.fromXDR(xdrData, 'base64'))
   } 
+
   //
   // Main method
   //
@@ -77,4 +80,4 @@ const token = new StellarSdk.Asset(
 
 const obj = new SendXlmToken(token)
 obj.checks()  
-obj.main(1)
+obj.main(100)
