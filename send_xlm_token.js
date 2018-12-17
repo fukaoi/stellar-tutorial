@@ -7,8 +7,7 @@ class SendXlmToken {
   constructor(assetObject = StellarSdk.Asset.native()) {
     StellarSdk.Network.useTestNetwork()
     this.server      = new StellarSdk.Server('https://horizon-testnet.stellar.org')
-    this.publicKey   = config.publicKey
-    this.secretKey   = config.secretKey
+    this.keypair = StellarSdk.Keypair.fromSecret(config.secretKey);
     this.destination = 'GBY4J7D4ERYAVD2IXTIFS6SSSSG343LNF5B57F4BJL5IIEKGUBEBYC37'    
     this.assetObject = assetObject
   }
@@ -37,7 +36,7 @@ class SendXlmToken {
   //
   async checks() {
     try {
-      const account = await this.server.loadAccount(this.publicKey);
+      const account = await this.server.loadAccount(this.keypair.publicKey());
       const res = account.balances.map(bl => {
         return {
           asset_type: bl.asset_type,
@@ -62,9 +61,9 @@ class SendXlmToken {
   //
   async main(amount) {
     try {
-      const account = await this.server.loadAccount(this.publicKey);
+      const account = await this.server.loadAccount(this.keypair.publicKey());
       const transaction = this.createTransaction(account, this.destination, amount);
-      transaction.sign(StellarSdk.Keypair.fromSecret(this.secretKey));
+      transaction.sign(this.keypair);
       await this.server.submitTransaction(transaction);
       console.log('Send success!!');
     } catch (error) {
