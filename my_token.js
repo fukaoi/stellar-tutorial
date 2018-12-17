@@ -1,5 +1,6 @@
 const StellarSdk = require('stellar-sdk')
-const config = require('./config.js').xlm
+const config = require('./config.js').config
+
 class MyToken {
   //
   // Initialize
@@ -15,7 +16,7 @@ class MyToken {
   //
   // Create transaction function 
   //
-  createTransaction(account, destination, amount) {
+  createTransaction(accountObject, destination, amount) {
     const config = {
       destination: destination,
       asset: this.assetObject,
@@ -25,7 +26,7 @@ class MyToken {
     const operation = () => { 
       return StellarSdk.Operation.payment(config)
     }
-    const tx = new StellarSdk.TransactionBuilder(account)
+    const tx = new StellarSdk.TransactionBuilder(accountObject)
     .addOperation(operation())
     .build()
     return tx
@@ -59,7 +60,7 @@ class MyToken {
   //
   // Main method
   //
-  async main(amount) {
+  async send(amount) {
     try {
       const account = await this.server.loadAccount(this.keypair.publicKey());
       const transaction = this.createTransaction(account, this.destination, amount);
