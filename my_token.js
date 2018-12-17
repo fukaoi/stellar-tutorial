@@ -77,5 +77,5 @@ const asset = new StellarSdk.Asset(
   config.publicKey  
 );
 
-const obj = new MyToken(token)
+const obj = new MyToken(asset)
 obj.send(100)
