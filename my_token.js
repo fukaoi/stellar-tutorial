@@ -74,7 +74,7 @@ class MyToken {
 }
 
 const asset = new StellarSdk.Asset(
-  'AaBa123',
+  'OREORE',
   config.publicKey  
 );
 
