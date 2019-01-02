@@ -23,6 +23,13 @@ exports.config = {
   secretKey: 'Your secret key',
 }
 ```
+and 
+destination public key
+```js
+my_tokne.js:１２
+
+this.destination = 'GBY4J7D4ERYAVD2IXTIFS6SSSSG343LNF5B57F4BJL5IIEKGUBEBYC37'
+```
 
 ## Usage
 
