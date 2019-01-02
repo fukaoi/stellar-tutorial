@@ -30,4 +30,20 @@ exports.config = {
 node my_token.js
 ```
 
+* Issue custom asset
+```js
+const asset = new StellarSdk.Asset(
+  'OREORE',
+  config.publicKey  
+);
+
+const obj = new MyToken(asset)
+obj.send(100)
+```
+
+* Send native(XLM) 
+```js
+const obj = new MyToken()
+obj.send(100)
+```
 
