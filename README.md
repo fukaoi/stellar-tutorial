@@ -54,3 +54,8 @@ const obj = new MyToken()
 obj.send(100)
 ```
 
+* check asset(token) balance
+```js
+const obj = new MyToken(asset)
+obj.checks()
+```
