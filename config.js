@@ -1,4 +1,4 @@
 exports.config = {
-  publicKey: 'GBY4J7D4ERYAVD2IXTIFS6SSSSG343LNF5B57F4BJL5IIEKGUBEBYC37',
-  secretKey: 'SCURX72OOZWDLZ6UVSNVA37D5HMEDXAKOOO74IHORZ6WYRYP54PJZ25D',
+  publicKey: 'Your public key',
+  secretKey: 'Your secret key',
 }
