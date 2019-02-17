@@ -8,7 +8,7 @@ const asset = new StellarSdk.Asset(
 );
 
 const memo = (type, value) => {
-  obj = {}
+  let obj = {}
   switch (type) {
     case "text":
       obj = StellarSdk.Memo.text(value)
@@ -27,6 +27,9 @@ const memo = (type, value) => {
   }
   return obj
 }
-
-const obj = new MyToken(asset)
+// const memoObj = memo("text", "I love stellar network.")
+const memoObj = memo("hash", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
+// const memoObj = memo("id", "123456789")
+const obj = new MyToken(asset, memoObj)
+// const obj = new MyToken(asset)
 obj.send(100)
