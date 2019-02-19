@@ -8,4 +8,4 @@ const asset = new StellarSdk.Asset(
 );
 
 const obj = new MyToken(asset)
-obj.send(1)
+obj.addOperation()
