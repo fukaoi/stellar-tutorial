@@ -1,21 +1,11 @@
-const crypto = require('crypto');
-const hash = crypto.createHash('sha256');
-const nonce = crypto.randomBytes(16)
+const StellarSdk = require('stellar-sdk')
+const MyToken = require('./lib/token.js')
+const config = require('./config.js').config
 
-const attachment = {
-  "nonce": nonce.toString('hex'),
-  "transaction": {
-    "sender_info": {
-      "name": "Oi Fuka",
-      "address": "10B Aoyama Street",
-      "city": "Tokyo",
-      "country": "Japan"
-    }
-  },
-  "operations": [{}]
-}
+const asset = new StellarSdk.Asset(
+  'OREORE',
+  config.publicKey
+);
 
-hash.update(JSON.stringify(attachment))
-let memoHashHex = hash.digest('hex')
-
-console.log(memoHashHex)
+const obj = new MyToken(asset)
+obj.send(1)
