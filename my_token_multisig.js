@@ -1,5 +1,5 @@
 const StellarSdk = require('stellar-sdk')
-const MyToken = require('./lib/token.js')
+const MyMultisig = require('./lib/multisig.js')
 const config = require('./config.js').config
 
 const asset = new StellarSdk.Asset(
@@ -7,5 +7,5 @@ const asset = new StellarSdk.Asset(
   config.publicKey
 );
 
-const obj = new MyToken(asset)
+const obj = new MyMultisig(asset)
 obj.send(100)

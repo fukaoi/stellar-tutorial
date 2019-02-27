@@ -7,7 +7,7 @@ if (!process.argv[2]) {
   return
 }
 
-if (process.argv[3] != true || process.argv[3] != false) {
+if (process.argv[3] != 'true' && process.argv[3] != 'false') {
   console.error('Input authorize true or false')
   return
 }
