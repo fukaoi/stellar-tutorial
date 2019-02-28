@@ -1,6 +1,9 @@
 const StellarSdk = require('stellar-sdk')
 const MyToken = require('./lib/token.js')
 const config = require('./config.js').config
+const configSec = require('./config.js').configSec
+
+const keypairSec = StellarSdk.Keypair.fromSecret(configSec.secretKey);
 
 const asset = new StellarSdk.Asset(
   'OREORE',
@@ -14,5 +17,6 @@ obj.createTransaction(
   100
 ).then((txBuild) => {
   const tx = txBuild.build()
+  tx.sign(keypairSec)
   obj.send(tx)
 })
