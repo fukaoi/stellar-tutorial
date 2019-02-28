@@ -3,7 +3,7 @@ const MyToken = require('./lib/token.js')
 const config = require('./config.js').config
 
 const asset = new StellarSdk.Asset(
-  'AAA',
+  'OREORE',
   config.publicKey
 );
 
