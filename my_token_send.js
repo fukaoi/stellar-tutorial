@@ -7,7 +7,7 @@ const asset = new StellarSdk.Asset(
   config.publicKey
 );
 
-const obj = new MyToken(asset)
+const obj = new MyToken()
 obj.createTransaction(
   'GBY4J7D4ERYAVD2IXTIFS6SSSSG343LNF5B57F4BJL5IIEKGUBEBYC37',
   asset,
@@ -15,4 +15,4 @@ obj.createTransaction(
 ).then((txBuild) => {
   const tx = txBuild.build()
   obj.send(tx)
-})
+}).catch((ex) => console.error(ex))

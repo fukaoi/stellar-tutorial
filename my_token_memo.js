@@ -27,9 +27,9 @@ const memo = (type, value) => {
   }
   return obj
 }
-const memoObj = memo("text", "おれおれトークン")
+const memo = memo("text", "おれおれトークン")
 // const memoObj = memo("hash", "b36f330c6db84bef6ca34057c9739b88115565cf873fdb1350e481140a4429ad")
 // const memoObj = memo("id", "123456789")
 // const memoObj = memo("return", "b36f330c6db84bef6ca34057c9739b88115565cf873fdb1350e481140a4429ad")
-const obj = new MyToken(asset, memoObj)
+const obj = new MyToken(asset)
 obj.send(100)

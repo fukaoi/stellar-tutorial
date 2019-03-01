@@ -15,3 +15,4 @@ if (process.argv[3] != 'true' && process.argv[3] != 'false') {
 
 const auth = new MyAuth(process.argv[2])
 auth.run("OREORE", process.argv[3])
+
