@@ -15,7 +15,7 @@ $ npm install
 ```
 
 ## Pre-work
-Rewrite config.js
+create config.js
 
 ```json
 exports.config = {
@@ -28,7 +28,7 @@ and
 ## Usage
 
 ```bash
-node my_token.js
+node my_token_send.js
 ```
 
 * Issue custom asset
