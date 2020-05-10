@@ -6,7 +6,7 @@ For creating and sending custom asset(token).The original code is [official page
 ## Operation check
 * Node.js version: 8.9.0, 10.14.2(Operation check OK)
 * OS version: Ubuntu, MacOSX(no check windows os)
-* js-stellar-sdk version: 0.11.0
+* js-stellar-sdk version: 5.0.1(latest version 2020/05/10)
 
 ## Install
 
