@@ -9,7 +9,7 @@ const asset = new StellarSdk.Asset(
 
 const obj = new MyToken()
 obj.createTransaction(
-  'GBY4J7D4ERYAVD2IXTIFS6SSSSG343LNF5B57F4BJL5IIEKGUBEBYC37',
+  'GCV24G6G7WYZDSYQHK7C3MDGJPQD7R6FBP7SGKSZE2FNQSW4SRZXXSIJ',
   asset,
   100
 ).then((txBuild) => {
