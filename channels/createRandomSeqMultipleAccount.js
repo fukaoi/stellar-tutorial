@@ -4,7 +4,6 @@ const {
   TransactionBuilder,
   Networks,
   Operation,
-  Account,
 } = require("stellar-sdk");
 
 const source = {
@@ -13,28 +12,27 @@ const source = {
 };
 
 const server = new Server("https://horizon-testnet.stellar.org");
-const index = Math.floor(Math.random() * 100).toString();
- 
-(async () => {
+
+const exec = async (increment) => {
   const newPubKey = Keypair.random().publicKey();
   const sourceAccount = await server.loadAccount(source.pubkey);
-  const account = new Account(source.pubkey, index);
-  console.log(`${account.sequenceNumber()}`);
-  account.incrementSequenceNumber();
-  console.log(`incremented: ${account.sequenceNumber()}`);
+  for (let i = 0; i < increment; i++) {
+    sourceAccount.incrementSequenceNumber();
+  }
   const transaction = new TransactionBuilder(sourceAccount, {
-    fee: await server.fetchBaseFee(),
-    networkPassphrase: Networks.TESTNET,
+    fee: await server.fetchBaseFee() * 2,
+    networkPassphrase: Networks.TESTNET, 
   })
     .addOperation(
       Operation.createAccount({
         destination: newPubKey,
-        startingBalance: "20",
+        startingBalance: "2",
       })
     )
-    .setTimeout(30)
+    .setTimeout(60)
     .build();
 
+  console.log(`next current number: ${sourceAccount.sequence}, increment: ${increment}`);
   transaction.sign(Keypair.fromSecret(source.secret));
 
   try {
@@ -43,4 +41,14 @@ const index = Math.floor(Math.random() * 100).toString();
   } catch (err) {
     console.error(err.response.data.extras.result_codes);
   }
+};
+
+(() => {
+  exec(0);
+  exec(1);
+  exec(2);
+  exec(3);
+  exec(4);
+  exec(5);
+  exec(6);
 })();
