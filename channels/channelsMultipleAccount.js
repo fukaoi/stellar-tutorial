@@ -5,11 +5,11 @@ const {
   Networks,
   Operation,
 } = require("stellar-sdk");
+
 const source = {
   pubkey: "GCGESL6O7LEZHYBU6HVNXIA6G6WA3XXS7PK5FCBSLANBZQ23KLWAV5QR",
   secret: "SCXZ7AG65KYBTRXBEVUSCGITFXGD5FABHJHM4EMWRABFSPLDOMWLINQO",
 };
-const sourceKeypair = Keypair.fromSecret(source.secret);
 
 const server = new Server("https://horizon-testnet.stellar.org");
 
@@ -34,14 +34,6 @@ const channels = [
     pubkey: "GCIA6UA3UDDHXZ3TVRK4D7XKOQAUE6QOJB242YQPWFL3SPTFEOMHH2MR",
     secret: "SAAXQFEX4ZR73A4NOE2U76NTQPDCFVUAADFZZELMWPHZDPS3RMCFA2WJ",
   },
-  {
-    pubkey: "GDADGHXRUBKBIGLHIWP6TL4RNP7NA4WBYNTRYYVKW4FV4FVI6R6VK6U4",
-    secret: "SB4QMKZXBTQO6C7EWJWP3PMK3UPOKCRFKFCH4VUESNNLWXH742LTAHCJ",
-  },
-  {
-    pubkey: "GCGESL6O7LEZHYBU6HVNXIA6G6WA3XXS7PK5FCBSLANBZQ23KLWAV5QR",
-    secret: "SB6GJ75LXWYG6ZWKCLSWBIUEKORPH3UASLBT74VILPWIDLTXWPBEN3O4",
-  },
 ];
 
 const index = Math.floor(Math.random() * channels.length);
@@ -49,11 +41,9 @@ const index = Math.floor(Math.random() * channels.length);
 (async () => {
   const newPubKey = Keypair.random().publicKey();
   const channel = channels[index];
-  const account = await server.loadAccount(channel.pubkey);
-  console.log(account);
-  const fee = await server.fetchBaseFee();
-  const transaction = new TransactionBuilder(account, {
-    fee,
+  const channelAccount = await server.loadAccount(channel.pubkey);
+  const transaction = new TransactionBuilder(channelAccount, {
+    fee: await server.fetchBaseFee(),
     networkPassphrase: Networks.TESTNET,
   })
     .addOperation(
@@ -65,13 +55,13 @@ const index = Math.floor(Math.random() * channels.length);
     )
     .setTimeout(30)
     .build();
-  // transaction.sign(sourceKeypair);
-  const channelKeypair = Keypair.fromSecret(channel.secret);
-  console.log(channelKeypair, channel);
-  transaction.sign(channelKeypair);
+
+  transaction.sign(Keypair.fromSecret(channel.secret));
+  transaction.sign(Keypair.fromSecret(source.secret));
 
   try {
-    await server.submitTransaction(transaction);
+    const res = await server.submitTransaction(transaction);
+    console.log(res._links.transaction.href);
   } catch (err) {
     console.error(err.response.data.extras.result_codes);
   }

@@ -3,10 +3,6 @@ const StellarBase = require("stellar-base");
 
 const sourceSecretKey =
   "SCXZ7AG65KYBTRXBEVUSCGITFXGD5FABHJHM4EMWRABFSPLDOMWLINQO";
-const receiverPublicKey =
-  "GC4NFLYYNJZ7JEFJ4NO3EB7IWIXYMCGW4T2THZIFN6XS6KEWI4QW46LT";
-const sourceKeypair = StellarSdk.Keypair.fromSecret(sourceSecretKey);
-const sourcePublicKey = sourceKeypair.publicKey();
 
 const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
 
