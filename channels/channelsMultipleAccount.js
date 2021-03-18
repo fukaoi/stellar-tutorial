@@ -7,8 +7,8 @@ const {
 } = require("stellar-sdk");
 
 const source = {
-  pubkey: "GCGESL6O7LEZHYBU6HVNXIA6G6WA3XXS7PK5FCBSLANBZQ23KLWAV5QR",
-  secret: "SCXZ7AG65KYBTRXBEVUSCGITFXGD5FABHJHM4EMWRABFSPLDOMWLINQO",
+  pubkey: "GDET6XH7VPFIBVWM45TS6TPJZ5LX2ODUQM6CBOWVA56WJNJFANOQJVBB",
+  secret: "SDE5XQ2XHF3XO4T7PESUOMWMELWYDEX3FG4XJ2SJQAB6GNM3KKIDT5BV",
 };
 
 const server = new Server("https://horizon-testnet.stellar.org");
@@ -37,6 +37,7 @@ const channels = [
 ];
 
 const index = Math.floor(Math.random() * channels.length);
+console.log(`index number: ${index}`);
 
 (async () => {
   const newPubKey = Keypair.random().publicKey();
