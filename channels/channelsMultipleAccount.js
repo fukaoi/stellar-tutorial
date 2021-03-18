@@ -36,7 +36,19 @@ const channels = [
   },
 ];
 
-const index = Math.floor(Math.random() * channels.length);
+const usedIndexes = [];    
+const uniqueRandomNumber = () => {
+  const index = Math.floor(Math.random() * channels.length);
+  if (usedIndexes.includes(index)) {
+    return this.getUniqueRandomNumber();
+  } else { 
+    console.log(index);
+    usedIndexes.push(index);
+    return index;
+  }
+}
+
+const index = uniqueRandomNumber();
 console.log(`index number: ${index}`);
 
 (async () => {
