@@ -31,15 +31,20 @@ const channels = [
     secret: "SBKIRJRB3MPD2ZXOHCV3QY5C3IEZDG63B4BITJRPYFQ7TUHZUIFSJJ7G",
   },
   {
-    pubkey: "GCIA6UA3UDDHXZ3TVRK4D7XKOQAUE6QOJB242YQPWFL3SPTFEOMHH2MR",
-    secret: "SAAXQFEX4ZR73A4NOE2U76NTQPDCFVUAADFZZELMWPHZDPS3RMCFA2WJ",
+    pubkey: "GBN5VG73IIDEDNI22CXZFCT7I6K5IAATVNJVLCQ24BIPRCQ5GM2ZIT3T",
+    secret: "SA7A4G7C7X4ROTHPSDKFM5W7XADNQQBK7OAXWAYNUNJJFF5LUUHPTGNP",
+  },
+  {
+    pubkey: "GAT6KZQ4S4KWOFTCU5E2TWHQSXSPAR67CQIMAX3XFBTI6DBBQ6UPZ4NJ",
+    secret: "SDVXLJCKQDINWPEG3VNPJJTDKGB7Y2KAOWEAHFKRMGTELLGQDWHPHUU3",
+  },
+  {
+    pubkey: "GDL7YYX337MFJ6CGDWJWUEIIKXXZAOR4HM2AZ2CLIV3IIHCMLRDSKU26",
+    secret: "SCMHF343ZB52YONPFIL2U3ODO3XPUCMFVQXDBE42533LJRY2XRV3EMJ3",
   },
 ];
 
-const index = Math.floor(Math.random() * channels.length);
-console.log(`index number: ${index}`);
-
-(async () => {
+const exec = async (index) => {
   const newPubKey = Keypair.random().publicKey();
   const channel = channels[index];
   const channelAccount = await server.loadAccount(channel.pubkey);
@@ -66,4 +71,14 @@ console.log(`index number: ${index}`);
   } catch (err) {
     console.error(err.response.data.extras.result_codes);
   }
+};
+
+(() => {
+  exec(0);
+  exec(1);
+  exec(2);
+  exec(3);
+  exec(4);
+  exec(5);
+  exec(6);
 })();
