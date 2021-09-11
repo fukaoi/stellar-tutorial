@@ -1,10 +1,10 @@
-const {
+import {
   Keypair,
   Server,
   TransactionBuilder,
   Networks,
   Operation,
-} = require("stellar-sdk");
+} from "stellar-sdk";
 
 const source = {
   pubkey: "GDET6XH7VPFIBVWM45TS6TPJZ5LX2ODUQM6CBOWVA56WJNJFANOQJVBB",
