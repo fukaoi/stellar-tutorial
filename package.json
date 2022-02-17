@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/fukaoi/stellar-tutorial#readme",
   "dependencies": {
-    "stellar-sdk": "^8.2.3",
-    "axios": ">=0.21.1"
+    "axios": "latest",
+    "stellar-sdk": "^10.0.1"
   }
 }
